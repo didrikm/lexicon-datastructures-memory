@@ -1,4 +1,6 @@
-﻿namespace lexicon_datastructures_memory;
+﻿using System.Collections;
+
+namespace lexicon_datastructures_memory;
 
 class Program
 {
@@ -34,13 +36,13 @@ class Program
                     ExamineList();
                     break;
                 case '2':
-                    ExamineQueue();
+                    // ExamineQueue();
                     break;
                 case '3':
-                    ExamineStack();
+                    // ExamineStack();
                     break;
                 case '4':
-                    CheckParanthesis();
+                    // CheckParanthesis();
                     break;
                 /*
                  * Extend the menu to include the recursive
@@ -71,17 +73,51 @@ class Program
          * Below you can see some inspirational code to begin working.
         */
 
-        //List<string> theList = new List<string>();
-        //string input = Console.ReadLine();
-        //char nav = input[0];
-        //string value = input.substring(1);
+        List<string> theList = new List<string>();
+        System.Console.WriteLine($"Capacity 1: {theList.Capacity}");
+        bool running = true;
+        string value;
+        string input;
+        char nav = 'x';
 
-        //switch(nav){...}
+        while (running)
+        {
+            System.Console.WriteLine(
+                "Input + followed by a string or - followed by a string, 0 to quit."
+            );
+            input = Console.ReadLine();
+            nav = input[0];
+            value = input.Substring(1);
+
+            switch (nav)
+            {
+                case '+':
+                    theList.Add(value);
+                    System.Console.WriteLine($"Capacity added: {theList.Capacity}");
+                    break;
+                case '-':
+                    theList.Remove(value);
+                    System.Console.WriteLine($"Capacity removed: {theList.Capacity}");
+                    break;
+                case '0':
+                    running = false;
+                    break;
+                default:
+                    System.Console.WriteLine("Only use + or -");
+                    break;
+            }
+        }
     }
 
     /// <summary>
     /// Examines the datastructure Queue
     /// </summary>
+    /// 1. -
+    /// 2. När man lägger till utanför dess range
+    /// 3. Dubbleras
+    /// 4. För varje utökning kräver en resurskrävande minnes-reallokering.
+    /// 5. Nej
+    /// 6. När vi vet hur många element vi kommer ha.
     static void ExamineQueue()
     {
         /*
