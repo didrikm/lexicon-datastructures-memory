@@ -36,7 +36,7 @@ class Program
                     ExamineList();
                     break;
                 case '2':
-                    // ExamineQueue();
+                    ExamineQueue();
                     break;
                 case '3':
                     // ExamineStack();
@@ -124,7 +124,39 @@ class Program
          * Loop this method untill the user inputs something to exit to main menue.
          * Create a switch with cases to enqueue items or dequeue items
          * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
-        */
+        */List<string> queue = new List<string>();
+        bool running = true;
+        string value;
+        string input;
+        char nav = 'x';
+
+        while (running)
+        {
+            System.Console.WriteLine(
+                "\nICA öppnar och kön till kassn är tom\nInput + followed by a string or - followed by a string, 0 to quit."
+            );
+            input = Console.ReadLine();
+            nav = input[0];
+            value = input.Substring(1);
+
+            switch (nav)
+            {
+                case '+':
+                    queue.Add(value);
+                    System.Console.WriteLine($"\n{value} ställer sig i kön.");
+                    break;
+                case '-':
+                    System.Console.WriteLine($"\n{queue[0]} blir expedierad och lämnar kön.");
+                    queue.RemoveAt(0);
+                    break;
+                case '0':
+                    running = false;
+                    break;
+                default:
+                    System.Console.WriteLine("Only use + or -");
+                    break;
+            }
+        }
     }
 
     /// <summary>
