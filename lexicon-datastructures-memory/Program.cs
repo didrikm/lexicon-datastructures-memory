@@ -19,6 +19,7 @@ class Program
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
                     + "\n5. ReverseText"
+                    + "\n6. RecurseEven"
                     + "\n0. Exit the application"
             );
             char input = ' '; //Creates the character input to be used with the switch-case below.
@@ -47,6 +48,9 @@ class Program
                     break;
                 case '5':
                     ReverseText();
+                    break;
+                case '6':
+                    RecurseEven();
                     break;
                 /*
                  * Extend the menu to include the recursive
@@ -86,8 +90,8 @@ class Program
 
         while (running)
         {
-            System.Console.WriteLine(
-                "Input + followed by a string or - followed by a string, 0 to quit."
+            System.Console.Write(
+                "Input + followed by a string or - followed by a string, 0 to quit: "
             );
             input = Console.ReadLine();
             nav = input[0];
@@ -137,8 +141,8 @@ class Program
 
         while (running)
         {
-            System.Console.WriteLine(
-                "\nICA öppnar och kön till kassan är tom\nInput + followed by a string or - followed by a string, 0 to quit."
+            System.Console.Write(
+                "\nICA öppnar och kön till kassan är tom\nInput + followed by a string or - followed by a string, 0 to quit: "
             );
             input = Console.ReadLine();
             nav = input[0];
@@ -182,7 +186,7 @@ class Program
 
         while (running)
         {
-            System.Console.WriteLine("Input + with a string to push and - to pop, 0 to exit");
+            System.Console.Write("Input + with a string to push and - to pop, 0 to exit: ");
             input = Console.ReadLine();
             nav = input[0];
             value = input.Substring(1);
@@ -213,7 +217,7 @@ class Program
         string input;
         string output = "";
 
-        System.Console.WriteLine("\nEnter a word to be reversed");
+        System.Console.Write("\nEnter a word to be reversed: ");
         input = Console.ReadLine();
         List<char> stack = input.ToList();
         for (int i = stack.Count - 1; i >= 0; i--)
@@ -230,7 +234,7 @@ class Program
          * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
          * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
          */
-        System.Console.WriteLine("\nEnter a string of parentheses to be checked.");
+        System.Console.Write("\nEnter a string of parentheses to be checked: ");
         string input = Console.ReadLine();
         char[] inputSplit = input.ToArray();
         List<char> lefts = new List<char> { '(', '[', '{' };
@@ -261,5 +265,19 @@ class Program
         }
         if (noTrouble)
             System.Console.WriteLine("\nWell formed parentheses\n");
+    }
+
+    static void RecurseEven()
+    {
+        System.Console.Write("\nEnter a number: ");
+        int input = int.Parse(Console.ReadLine());
+        System.Console.WriteLine($"\nThe {input}th even number is {EvenRecursion(input)}\n");
+    }
+
+    static int EvenRecursion(int n)
+    {
+        if (n == 1)
+            return 2;
+        return (EvenRecursion(n - 1) + 2);
     }
 }
