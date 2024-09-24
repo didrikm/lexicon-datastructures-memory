@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lexicon-datastructures-memory")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b0c5f5b1df52b1b57a186f3e9c9288a5ac69886")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f888d1b61a06df1862a2c3936e9f81cbe5950ab6")]
 [assembly: System.Reflection.AssemblyProductAttribute("lexicon-datastructures-memory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lexicon-datastructures-memory")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

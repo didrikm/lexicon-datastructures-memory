@@ -39,7 +39,7 @@ class Program
                     ExamineQueue();
                     break;
                 case '3':
-                    ExamineStack();
+                    ReverseText();
                     break;
                 case '4':
                     // CheckParanthesis();
@@ -163,7 +163,7 @@ class Program
     /// <summary>
     /// Examines the datastructure Stack
     /// </summary>
-    static void ExamineStack()
+    static void ReverseText()
     {
         /*
          * Loop this method until the user inputs something to exit to main menue.
@@ -171,41 +171,17 @@ class Program
          * Make sure to look at the stack after pushing and and poping to see how it behaves
         */
 
-        List<string> stack = new List<string>();
-        bool running = true;
-        string value;
         string input;
-        char nav = 'x';
+        string output = "";
 
-        while (running)
+        System.Console.WriteLine("\nEnter a word to be reversed");
+        input = Console.ReadLine();
+        List<char> stack = input.ToList();
+        for (int i = stack.Count - 1; i >= 0; i--)
         {
-            System.Console.WriteLine(
-                "\nICA öppnar och kön till kassan är tom\nInput + followed by a string or - followed by a string, 0 to quit."
-            );
-            input = Console.ReadLine();
-            nav = input[0];
-            value = input.Substring(1);
-
-            switch (nav)
-            {
-                case '+':
-                    stack.Add(value);
-                    System.Console.WriteLine($"\n{value} ställer sig i kön.");
-                    break;
-                case '-':
-                    System.Console.WriteLine(
-                        $"\n{stack[stack.Count - 1]} blir expedierad och lämnar kön."
-                    );
-                    stack.RemoveAt(stack.Count - 1);
-                    break;
-                case '0':
-                    running = false;
-                    break;
-                default:
-                    System.Console.WriteLine("Only use + or -");
-                    break;
-            }
+            output += stack[i];
         }
+        System.Console.WriteLine($"\n{output}\n");
     }
 
     static void CheckParanthesis()
