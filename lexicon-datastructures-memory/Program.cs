@@ -18,6 +18,7 @@ class Program
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
+                    + "\n5. ReverseText"
                     + "\n0. Exit the application"
             );
             char input = ' '; //Creates the character input to be used with the switch-case below.
@@ -39,10 +40,13 @@ class Program
                     ExamineQueue();
                     break;
                 case '3':
-                    ReverseText();
+                    ExamineStack();
                     break;
                 case '4':
                     // CheckParanthesis();
+                    break;
+                case '5':
+                    ReverseText();
                     break;
                 /*
                  * Extend the menu to include the recursive
@@ -163,14 +167,49 @@ class Program
     /// <summary>
     /// Examines the datastructure Stack
     /// </summary>
-    static void ReverseText()
+    static void ExamineStack()
     {
         /*
          * Loop this method until the user inputs something to exit to main menue.
          * Create a switch with cases to push or pop items
          * Make sure to look at the stack after pushing and and poping to see how it behaves
         */
+        List<string> stack = new List<string>();
+        bool running = true;
+        string value;
+        string input;
+        char nav = 'x';
 
+        while (running)
+        {
+            System.Console.WriteLine("Input + with a string to push and - to pop, 0 to exit");
+            input = Console.ReadLine();
+            nav = input[0];
+            value = input.Substring(1);
+            switch (nav)
+            {
+                case '+':
+                    stack.Add(value);
+                    break;
+                case '-':
+                    stack.RemoveAt(stack.Count - 1);
+                    break;
+                case '0':
+                    running = false;
+                    break;
+                default:
+                    System.Console.WriteLine("Only use + or -");
+                    break;
+            }
+            foreach (var item in stack)
+            {
+                System.Console.WriteLine(item);
+            }
+        }
+    }
+
+    static void ReverseText()
+    {
         string input;
         string output = "";
 
