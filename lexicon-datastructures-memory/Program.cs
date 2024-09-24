@@ -43,7 +43,7 @@ class Program
                     ExamineStack();
                     break;
                 case '4':
-                    // CheckParanthesis();
+                    CheckParenthesis();
                     break;
                 case '5':
                     ReverseText();
@@ -223,12 +223,43 @@ class Program
         System.Console.WriteLine($"\n{output}\n");
     }
 
-    static void CheckParanthesis()
+    static void CheckParenthesis()
     {
         /*
          * Use this method to check if the paranthesis in a string is Correct or incorrect.
          * Example of correct: (()), {}, [({})],  List<int> list = new List<int>() { 1, 2, 3, 4 };
          * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
          */
+        System.Console.WriteLine("\nEnter a string of parentheses to be checked.");
+        string input = Console.ReadLine();
+        char[] inputSplit = input.ToArray();
+        List<char> lefts = new List<char> { '(', '[', '{' };
+        List<char> rights = new List<char> { ')', ']', '}' };
+        List<char> stack = new List<char>();
+        bool noTrouble = true;
+        Dictionary<char, char> parenDict = new Dictionary<char, char>
+        {
+            { ')', '(' },
+            { ']', '[' },
+            { '}', '{' },
+        };
+        foreach (var c in inputSplit)
+        {
+            if (lefts.Contains(c))
+                stack.Add(c);
+            else if (rights.Contains(c))
+            {
+                if (stack.Count > 0 && stack[stack.Count - 1] == parenDict[c])
+                    stack.RemoveAt(stack.Count - 1);
+                else
+                {
+                    System.Console.WriteLine("\nUnmatched parenthesis\n");
+                    noTrouble = false;
+                    break;
+                }
+            }
+        }
+        if (noTrouble)
+            System.Console.WriteLine("\nWell formed parentheses\n");
     }
 }
