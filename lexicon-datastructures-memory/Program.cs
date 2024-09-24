@@ -20,6 +20,7 @@ class Program
                     + "\n4. CheckParenthesis"
                     + "\n5. ReverseText"
                     + "\n6. RecurseEven"
+                    + "\n7. RecurseFibonacci"
                     + "\n0. Exit the application"
             );
             char input = ' '; //Creates the character input to be used with the switch-case below.
@@ -51,6 +52,9 @@ class Program
                     break;
                 case '6':
                     RecurseEven();
+                    break;
+                case '7':
+                    RecurseFibonacci();
                     break;
                 /*
                  * Extend the menu to include the recursive
@@ -278,6 +282,24 @@ class Program
     {
         if (n == 1)
             return 2;
-        return (EvenRecursion(n - 1) + 2);
+        return EvenRecursion(n - 1) + 2;
+    }
+
+    static void RecurseFibonacci()
+    {
+        System.Console.Write("\nEnter a number: ");
+        int input = int.Parse(Console.ReadLine());
+        for (int i = 0; i < input; i++)
+        {
+            System.Console.Write($"{FibonacciRecursion(i)} ");
+        }
+        System.Console.WriteLine("\n");
+    }
+
+    static int FibonacciRecursion(int n)
+    {
+        if (n <= 1)
+            return n;
+        return FibonacciRecursion(n - 1) + FibonacciRecursion(n - 2);
     }
 }
