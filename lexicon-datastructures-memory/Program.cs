@@ -329,17 +329,12 @@ class Program
         int input = int.Parse(Console.ReadLine());
         int prev = 0;
         int curr = 1;
-        if (input > 0)
-            System.Console.Write($"{prev} ");
-        if (input > 1)
-            System.Console.Write($"{curr} ");
-        if (input > 2)
         {
-            for (int i = 0; i < input - 2; i++)
+            for (int i = 0; i < input; i++)
             {
+                System.Console.Write($"{prev} ");
                 curr = curr + prev;
                 prev = curr - prev;
-                System.Console.Write($"{curr} ");
             }
         }
         System.Console.WriteLine("\n");
