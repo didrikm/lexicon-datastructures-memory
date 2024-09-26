@@ -145,7 +145,7 @@ class Program
          * Create a switch with cases to enqueue items or dequeue items
          * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
         */
-        List<string> queue = new List<string>();
+        Queue queue = new();
         bool running = true;
         string value;
         string input;
@@ -163,12 +163,12 @@ class Program
             switch (nav)
             {
                 case '+':
-                    queue.Add(value);
+                    queue.Enqueue(value);
                     System.Console.WriteLine($"\n{value} ställer sig i kön.");
                     break;
                 case '-':
-                    System.Console.WriteLine($"\n{queue[0]} blir expedierad och lämnar kön.");
-                    queue.RemoveAt(0);
+                    System.Console.WriteLine($"\n{queue.Peek()} blir expedierad och lämnar kön.");
+                    queue.Dequeue();
                     break;
                 case '0':
                     running = false;
@@ -190,7 +190,7 @@ class Program
          * Create a switch with cases to push or pop items
          * Make sure to look at the stack after pushing and and poping to see how it behaves
         */
-        List<string> stack = new List<string>();
+        Stack stack = new();
         bool running = true;
         string value;
         string input;
@@ -205,10 +205,12 @@ class Program
             switch (nav)
             {
                 case '+':
-                    stack.Add(value);
+                    stack.Push(value);
+                    System.Console.WriteLine(stack.ToString());
                     break;
                 case '-':
-                    stack.RemoveAt(stack.Count - 1);
+                    stack.Pop();
+                    System.Console.WriteLine(stack.ToString());
                     break;
                 case '0':
                     running = false;
@@ -231,12 +233,9 @@ class Program
 
         System.Console.Write("\nEnter a word to be reversed: ");
         input = Console.ReadLine();
-        List<char> stack = input.ToList();
-        for (int i = stack.Count - 1; i >= 0; i--)
-        {
-            output += stack[i];
-        }
-        System.Console.WriteLine($"\n{output}\n");
+        Stack<char> charStack = new Stack<char>(input);
+        foreach (var c in charStack)
+            System.Console.Write($"\nc\n\n");
     }
 
     static void CheckParenthesis()
@@ -251,7 +250,7 @@ class Program
         char[] inputSplit = input.ToArray();
         List<char> lefts = new List<char> { '(', '[', '{' };
         List<char> rights = new List<char> { ')', ']', '}' };
-        List<char> stack = new List<char>();
+        Stack stack = new();
         bool noTrouble = true;
         Dictionary<char, char> parenDict = new Dictionary<char, char>
         {
@@ -262,21 +261,22 @@ class Program
         foreach (var c in inputSplit)
         {
             if (lefts.Contains(c))
-                stack.Add(c);
+                stack.Push(c);
             else if (rights.Contains(c))
             {
-                if (stack.Count > 0 && stack[stack.Count - 1] == parenDict[c])
-                    stack.RemoveAt(stack.Count - 1);
+                if ((char)stack.Peek() == parenDict[c])
+                    stack.Pop();
                 else
                 {
-                    System.Console.WriteLine("\nUnmatched parenthesis\n");
                     noTrouble = false;
                     break;
                 }
             }
         }
-        if (noTrouble)
-            System.Console.WriteLine("\nWell formed parentheses\n");
+        if (stack.Count == 0 && noTrouble)
+            System.Console.WriteLine("\nWell formed parenthesis\n");
+        else
+            System.Console.WriteLine("\nBad parenthesis\n");
     }
 
     static void RecurseEven()
