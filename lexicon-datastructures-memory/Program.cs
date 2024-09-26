@@ -379,6 +379,7 @@ class Program
         }
         System.Console.WriteLine("\n");
         //Iteration är mer minneseffektivt eftersom varje rekursivt anrop skapar en ny stack frame.
-        //Risk för stack overflow vid stora n.
+        //Risk för stack overflow vid stora n. Får ingen stack overflow vid stora n med naiv rekursion
+        //så det måste vara tidskomplexiteten som kniper.
     }
 }
