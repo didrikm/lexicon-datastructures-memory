@@ -234,8 +234,10 @@ class Program
         System.Console.Write("\nEnter a word to be reversed: ");
         input = Console.ReadLine();
         Stack<char> charStack = new Stack<char>(input);
+        System.Console.WriteLine();
         foreach (var c in charStack)
-            System.Console.Write($"\nc\n\n");
+            System.Console.Write(c);
+        System.Console.WriteLine("\n");
     }
 
     static void CheckParenthesis()
