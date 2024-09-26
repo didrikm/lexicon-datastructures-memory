@@ -297,16 +297,53 @@ class Program
 
     static void RecurseFibonacci()
     {
-        System.Console.Write("\nEnter a number: ");
-        int input = int.Parse(Console.ReadLine());
-        for (int i = 0; i < input; i++)
+        System.Console.WriteLine(
+            "\nWhich recursive function do you wish to use? Hint: try with n=100\n1. Naive\n2. With memory"
+        );
+        string choice = Console.ReadLine();
+        int input;
+        switch (choice)
         {
-            System.Console.Write($"{FibonacciRecursion(i)} ");
+            case "1":
+                System.Console.Write("\nEnter a number: ");
+                input = int.Parse(Console.ReadLine());
+                for (int i = 0; i < input; i++)
+                {
+                    System.Console.Write($"{FibonacciRecursion(i)} ");
+                }
+                System.Console.WriteLine("\n");
+                break;
+            case "2":
+                System.Console.Write("\nEnter a number: ");
+                input = int.Parse(Console.ReadLine());
+                Dictionary<int, long> fiboDict = new();
+                FibonacciRecursionWithMem(input, fiboDict);
+                for (int i = 0; i < input; i++)
+                    System.Console.Write($"{fiboDict[i]} ");
+                System.Console.WriteLine("\n");
+                break;
+            default:
+                System.Console.WriteLine("You crashed it you dummy...");
+                break;
         }
-        System.Console.WriteLine("\n");
     }
 
-    static int FibonacciRecursion(int n)
+    static long FibonacciRecursionWithMem(int n, Dictionary<int, long> fiboDict)
+    {
+        if (n <= 1)
+        {
+            fiboDict[n] = n;
+            return n;
+        }
+        if (fiboDict.TryGetValue(n, out long value))
+            return value;
+        value =
+            FibonacciRecursionWithMem(n - 1, fiboDict) + FibonacciRecursionWithMem(n - 2, fiboDict);
+        fiboDict[n] = value;
+        return value;
+    }
+
+    static long FibonacciRecursion(int n)
     {
         if (n <= 1)
             return n;
